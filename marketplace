@@ -1,0 +1,51 @@
+//Programa en C para la Un marketplace ofrece a sus clientes la posibilidad de recoger los productos comprados
+//en un punto de recogida. Un punto de recogida es una tienda física cercana al cliente.
+//El punto de recogida recibe 0.35 € del marketplace por cada paquete entregado y 0.15 € por cada devolución tramitada.
+
+#include <stdio.h>
+
+int main() {
+
+  const float DELIVERY_FEE = 0.35;
+  const float RETURN_FEE = 0.15;
+  
+  int packagesDelivered, packagesReturned;
+  float totalAmount;
+
+  printf("PACKAGES DELIVERED? \n");
+  scanf("%d", &packagesDelivered);
+
+  printf("PACKAGES RETURNED? \n");
+  scanf("%d", &packagesReturned);
+
+  totalAmount = packagesDelivered * DELIVERY_FEE + 
+               packagesReturned * RETURN_FEE;
+
+  printf("TOTAL AMOUNT: %.2f\n", totalAmount);
+
+  return 0;
+}
+--------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+
+  const float DELIVERY_FEE = 0.35;
+  const float RETURN_FEE = 0.15;
+  
+  int packagesDelivered, packagesReturned;
+  float totalAmount;
+
+  // Read values directly from stdin instead of prompting
+  scanf("%d", &packagesDelivered);
+  scanf("%d", &packagesReturned);
+
+  totalAmount = packagesDelivered * DELIVERY_FEE + 
+               packagesReturned * RETURN_FEE;
+
+  printf("TOTAL AMOUNT: %.2f\n", totalAmount);
+
+  return 0;
+}
+
