@@ -1,0 +1,66 @@
+//Para subir a la montaña rusa de un parque de atracciones es necesario que el/la visitante cumpla alguna de las siguientes condiciones de edad:
+// Tener 16 o más años.
+// Tener entre 12 y 15 años e ir acompañado/a de una persona .
+// Además, también es necesario que cumpla las siguientes condiciones de estatura y salud:
+// Tener una altura comprendida entre los 1,40 m y los 1,95 m.
+// No le estresen las alturas.
+// No le estresen las altas velocidades
+// Programa C que indique si un/a visitante puede subir o no a la montaña rusa.
+
+
+#include <stdio.h>
+
+// Defino las  constantes de edad y altura
+#define MIN_AGE 16
+#define MIN_AGE_WITH_ADULT 12
+#define MAX_AGE_WITH_ADULT 15
+#define MIN_HEIGHT 1.40
+#define MAX_HEIGHT 1.95
+
+int main() {
+    // Variables para almacenar la  entrada
+    int age, accompanied, healthStatus;
+    float height;
+    
+    // Input
+    printf("INPUT\n");
+    printf("AGE?\n");
+    scanf("%d", &age);
+    
+    printf("ACCOMPANIED BY AN ADULT (0-FALSE, 1-TRUE)?\n");
+    scanf("%d", &accompanied);
+    
+    printf("HEIGHT?\n");
+    scanf("%f", &height);
+    
+    printf("HEALTH STATUS (0-OK, 1-FEAR OF HEIGHTS, 2-FEAR OF HIGH SPEEDS)?\n");
+    scanf("%d", &healthStatus);
+    
+    // Chequeo las condiciones
+    int canRide = 1; // Assume the visitor can ride
+    
+    // Chequeo la Edad
+    if(age < MIN_AGE) {
+        if(age >= MIN_AGE_WITH_ADULT && age <= MAX_AGE_WITH_ADULT && accompanied) {
+            // This is fine, do nothing
+        } else {
+            canRide = 0; // NO puede montar por restricciones de edad
+        }
+    }
+    
+    // Chequeo la Altura
+    if(height < MIN_HEIGHT || height > MAX_HEIGHT) {
+        canRide = 0; // NO puede montar por restrcciones de altura
+    }
+    
+    // Chequeo la salud
+    if(healthStatus != 0) {
+        canRide = 0; // NO pude montar por restricciones de salud
+    }
+    
+    // Output: Puede montar SI o NO
+    printf("OUTPUT\n");
+    printf("CAN RIDE (0-FALSE, 1-TRUE): %d\n", canRide);
+    
+    return 0;
+}
