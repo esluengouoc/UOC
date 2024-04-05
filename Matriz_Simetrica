@@ -1,0 +1,88 @@
+//Programa en C de Matriz Simetrica
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MATRIX_SIZE 3
+
+bool isSymmetric;
+int iCoord; 
+int jCoord;
+int value;
+
+int matrix[MATRIX_SIZE][MATRIX_SIZE];
+
+bool isMatrixSymmetric(int matrix[MATRIX_SIZE][MATRIX_SIZE]) {
+
+  isSymmetric = true;
+
+  if (matrix[0][0] != matrix[0][0]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[0][1] != matrix[1][0]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[0][2] != matrix[2][0]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[1][0] != matrix[0][1]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[1][1] != matrix[1][1]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[1][2] != matrix[2][1]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[2][0] != matrix[0][2]) {
+    isSymmetric = false;
+  }
+
+  if (matrix[2][1] != matrix[1][2]) {
+    isSymmetric = false; 
+  }
+
+  if (matrix[2][2] != matrix[2][2]) {
+    isSymmetric = false;
+  }
+
+  return isSymmetric;
+
+}
+
+int main() {
+
+  printf("INPUT\n");
+
+  for (int i = 0; i < MATRIX_SIZE * MATRIX_SIZE; i++) {
+
+    printf("I-COORD?\n");
+    scanf("%d", &iCoord);
+
+    printf("J-COORD?\n");
+    scanf("%d", &jCoord);
+
+    printf("VALUE?\n");
+    scanf("%d", &value);
+
+    matrix[iCoord-1][jCoord-1] = value;
+
+  }
+
+  printf("OUTPUT\n");
+
+  if(isMatrixSymmetric(matrix)) {
+    printf("IS SYMMETRIC (0-FALSE, 1-TRUE): 1\n");
+  } else {
+    printf("IS SYMMETRIC (0-FALSE, 1-TRUE): 0\n");
+  }
+
+  return 0;
+
+}
