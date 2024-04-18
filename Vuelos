@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ID_LENGTH 20
+#define FIRST_CLASS 2
+#define BUSINESS 1
+#define TOURIST 0
+
+typedef struct {
+    int days;
+    int hours;
+    int minutes;
+} LayoverTime;
+
+typedef struct {
+    char id[MAX_ID_LENGTH];
+    int flightClass;
+    LayoverTime layover;
+    int connections;
+} Flight;
+
+int main() {
+    Flight flight1, flight2;
+    printf("INPUT\n");
+    // Leer datos del vuelo 1
+    printf("FLIGHT 1\nID?\n");
+    scanf("%s", flight1.id);
+    printf("CLASS (0-TOURIST, 1-BUSINESS, 2-FIRST)?\n");
+    scanf("%d", &flight1.flightClass);
+    printf("LAYOVER DAYS?\n");
+    scanf("%d", &flight1.layover.days);
+    printf("LAYOVER HOURS?\n");
+    scanf("%d", &flight1.layover.hours);
+    printf("LAYOVER MINUTES?\n");
+    scanf("%d", &flight1.layover.minutes);
+    printf("CONNECTIONS?\n");
+    scanf("%d", &flight1.connections);
+
+    // Leer datos del vuelo 2
+    printf("FLIGHT 2\nID?\n");
+    scanf("%s", flight2.id);
+    printf("CLASS (0-TOURIST, 1-BUSINESS, 2-FIRST)?\n");
+    scanf("%d", &flight2.flightClass);
+    printf("LAYOVER DAYS?\n");
+    scanf("%d", &flight2.layover.days);
+    printf("LAYOVER HOURS?\n");
+    scanf("%d", &flight2.layover.hours);
+    printf("LAYOVER MINUTES?\n");
+    scanf("%d", &flight2.layover.minutes);
+    printf("CONNECTIONS?\n");
+    scanf("%d", &flight2.connections);
+
+    // Variables para comparar vuelos
+    int f1TotalMinutes = flight1.layover.days * 1440 + flight1.layover.hours * 60 + flight1.layover.minutes;
+    int f2TotalMinutes = flight2.layover.days * 1440 + flight2.layover.hours * 60 + flight2.layover.minutes;
+    char *mostConvenientFlightID = flight2.id;  // Default to flight2 in case of a tie
+
+    // Comparar vuelos y decidir el más conveniente
+    if (flight1.flightClass > flight2.flightClass || 
+       (flight1.flightClass == flight2.flightClass && f1TotalMinutes < f2TotalMinutes) ||
+       (flight1.flightClass == flight2.flightClass && f1TotalMinutes == f2TotalMinutes && flight1.connections < flight2.connections)) {
+        mostConvenientFlightID = flight1.id;
+    }
+
+    // Mostrar resultado
+    printf("\nOUTPUT\n");
+    printf("MOST CONVENIENT FLIGHT: %s\n", mostConvenientFlightID);
+
+    return 0;
+}
